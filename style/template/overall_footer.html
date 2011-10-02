@@ -1,0 +1,73 @@
+<!-- IF S_WATCH_FORUM_LINK or U_WATCH_TOPIC or U_BOOKMARK_TOPIC or U_BUMP_TOPIC or U_ACP -->
+<nav class="footer-links"><div>
+	<div class="left">
+		<!-- IF S_WATCH_FORUM_LINK -->
+			<!-- DEFINE $S_FOOTER_NAV = 1 -->
+			<a href="{S_WATCH_FORUM_LINK}">{S_WATCH_FORUM_TITLE}</a>
+		<!-- ENDIF -->
+		<!-- IF U_WATCH_TOPIC -->
+			<!-- IF $S_FOOTER_NAV --><span class="bull">&bull;</span><!-- ELSE --><!-- DEFINE $S_FOOTER_NAV = 1 --><!-- ENDIF -->
+			<a href="{U_WATCH_TOPIC}">{L_WATCH_TOPIC}</a>
+		<!-- ENDIF -->
+		<!-- IF U_BOOKMARK_TOPIC -->
+			<!-- IF $S_FOOTER_NAV --><span class="bull">&bull;</span><!-- ELSE --><!-- DEFINE $S_FOOTER_NAV = 1 --><!-- ENDIF -->
+			<a href="{U_BOOKMARK_TOPIC}">{L_BOOKMARK_TOPIC}</a>
+		<!-- ENDIF -->
+		<!-- IF U_BUMP_TOPIC -->
+			<!-- IF $S_FOOTER_NAV --><span class="bull">&bull;</span><!-- ELSE --><!-- DEFINE $S_FOOTER_NAV = 1 --><!-- ENDIF -->
+			<a href="{U_BUMP_TOPIC}">{L_BUMP_TOPIC}</a>
+		<!-- ENDIF -->
+	</div>
+	<!-- IF U_ACP -->
+		<div class="<!-- IF $S_FOOTER_NAV -->right<!-- ELSE -->center<!-- ENDIF -->">
+			<a href="{U_ACP}">{L_ACP}</a>
+		</div>
+	<!-- IF not $S_FOOTER_NAV --><div class="clear"></div><!-- ENDIF -->
+	<!-- ENDIF -->
+</div></nav>
+<!-- ENDIF -->
+
+</div></div><!-- /div.content -->
+
+<!-- IF $SHOW_COPYRIGHT -->
+<pre>
+Copyright 2011 Vjacheslav Trushkin (http://www.artodia.com/)
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this phpBB style except in compliance with the License.
+You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</pre>
+<!-- ENDIF -->
+
+</div><!-- /div.wrap-content -->
+
+<footer id="phpbb-footer"><div>
+	<!-- IF TRANSLATION_INFO or DEBUG_OUTPUT -->
+	<p class="left">
+		<!-- IF TRANSLATION_INFO -->{TRANSLATION_INFO}<br /><!-- ENDIF -->
+		<!-- IF DEBUG_OUTPUT -->{DEBUG_OUTPUT}<!-- ENDIF -->
+	</p>
+	<!-- ENDIF -->
+	<p class="copyright">
+		<a href="http://www.phpbb.com/" class="phpbb-group" title="Powered by phpBB">Powered by phpBB&reg; Forum Software &copy; phpBB Group</a> 
+		<a href="http://www.artodia.com/" class="arty" title="HTML5 framework and phpBB theme by Arty">HTML5 framework and phpBB theme by Arty</a>
+	</p>
+
+	<div class="clear"><!-- IF not S_IS_BOT -->{RUN_CRON_TASK}<!-- ENDIF --></div>
+
+</div></footer>
+
+</div><!-- /div.wrap -->
+
+<!-- INCLUDE scripts_footer.html -->
+
+</body>
+</html>

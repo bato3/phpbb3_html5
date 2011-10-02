@@ -1,0 +1,39 @@
+<!-- DEFINE $LAST_ANNOUNCE = true -->
+<!-- BEGIN topicrow -->
+	<!-- IF topicrow.S_FIRST_ROW -->
+		<section class="topics"><div>
+		<h1><!-- IF topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL -->{L_ANNOUNCEMENTS}<!-- ELSE -->{L_TOPICS}<!-- ENDIF --></h1>
+		<ul class="topics-list<!-- IF topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL --> announce<!-- ENDIF -->">
+	<!-- ELSEIF $LAST_ANNOUNCE and not topicrow.S_POST_ANNOUNCE and not topicrow.S_POST_GLOBAL -->
+		</ul>
+		</div></section>
+		<section class="topics"><div>
+		<h1>{L_TOPICS}</h1>
+		<ul class="topics-list">
+		<!-- DEFINE $LAST_ANNOUNCE = false -->
+	<!-- ENDIF -->
+		<li class="topic topic-{topicrow.S_TOPIC_TYPE}<!-- IF topicrow.S_UNREAD_TOPIC --> unread<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ENDIF --><!-- IF topicrow.S_TOPIC_UNAPPROVED --> unapproved unapproved-topic<!-- ENDIF --><!-- IF topicrow.S_POSTS_UNAPPROVED --> unapproved unapproved-post<!-- ENDIF -->">
+		<section>
+			<figure data-img="{topicrow.TOPIC_ICON_IMG}">
+				<!-- IF topicrow.TOPIC_ICON_IMG -->
+					<img src="{T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}" alt="{topicrow.TOPIC_FOLDER_IMG_ALT}" />
+				<!-- ELSEIF forumrow.S_IS_LINK -->
+					<img src="{T_THEME_PATH}/icons/topic_moved.png" alt="{topicrow.TOPIC_FOLDER_IMG_ALT}" />
+				<!-- ELSEIF forumrow.S_UNREAD_FORUM -->
+					<img src="{T_THEME_PATH}/icons/topic_new.png" alt="{forumrow.FORUM_FOLDER_IMG_ALT}" />
+				<!-- ELSE -->
+					<img src="{T_THEME_PATH}/icons/topic.png" alt="{forumrow.FORUM_FOLDER_IMG_ALT}" />
+				<!-- ENDIF -->
+				<figcaption>{forumrow.FORUM_NAME}</figcaption>
+			</figure>
+			<div class="topic-content"><div>
+				<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}" class="newest-post">{L_VIEW_NEWEST_POST}</a><!-- ENDIF -->
+				<h1><a href="{topicrow.U_VIEW_TOPIC}">{topicrow.TOPIC_TITLE}</a></h1>
+			</div></div>
+		</section>
+		</li>
+	<!-- IF topicrow.S_LAST_ROW -->
+		</ul>
+		</div></section>
+	<!-- ENDIF -->
+<!-- END topicrow -->

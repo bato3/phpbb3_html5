@@ -1,0 +1,83 @@
+<!-- BEGIN forumrow -->
+	<!-- IF forumrow.S_FIRST_ROW or forumrow.S_IS_CAT or forumrow.S_NO_CAT -->
+		<!-- IF not forumrow.S_FIRST_ROW -->
+			<!-- IF $EXTRA_ROW -->
+				<li class="empty"></li>
+			<!-- ENDIF -->
+			</ul>
+			</div></section>
+		<!-- ENDIF -->
+		<section class="forums<!-- IF forumrow.S_FIRST_ROW --> first<!-- ENDIF -->"><div>
+		<!-- IF forumrow.S_IS_CAT -->
+			<h1><a href="{forumrow.U_VIEWFORUM}">{forumrow.FORUM_NAME}</a></h1>
+		<!-- ELSE -->
+			<h1>{L_FORUMS}</h1>
+		<!-- ENDIF -->
+		<ul class="forums-list">
+		<!-- DEFINE $EXTRA_ROW = false -->
+		<!-- DEFINE $FIRST_ROW = true -->
+	<!-- ENDIF -->
+	
+	<!-- IF not forumrow.S_IS_CAT -->
+		<!-- IF not $EXTRA_ROW and not $FIRST_ROW -->
+			</ul>
+			<ul class="forums-list">
+		<!-- ENDIF -->
+		<li class="forum-row<!-- IF forumrow.S_UNREAD_FORUM --> unread<!-- ENDIF --><!-- IF forumrow.S_LOCKED_FORUM --> locked<!-- ENDIF --><!-- IF forumrow.S_IS_LINK --> link<!-- ELSE --> not-link<!-- ENDIF --><!-- IF forumrow.S_IS_LINK and not forumrow.CLICKS --> link-notracking<!-- ENDIF --><!-- IF $EXTRA_ROW --> even<!-- ENDIF -->">
+		<section>
+			<figure>
+				<!-- IF forumrow.FORUM_IMAGE -->
+					{forumrow.FORUM_IMAGE}
+				<!-- ELSEIF forumrow.S_IS_LINK -->
+					<img src="{T_THEME_PATH}/icons/link.png" alt="{forumrow.FORUM_FOLDER_IMG_ALT}" />
+				<!-- ELSEIF forumrow.S_UNREAD_FORUM -->
+					<img src="{T_THEME_PATH}/icons/forum_new.png" alt="{forumrow.FORUM_FOLDER_IMG_ALT}" />
+				<!-- ELSE -->
+					<img src="{T_THEME_PATH}/icons/forum.png" alt="{forumrow.FORUM_FOLDER_IMG_ALT}" />
+				<!-- ENDIF -->
+				<figcaption>{forumrow.FORUM_NAME}</figcaption>
+			</figure>
+			<div class="forum-content clickable"><div>
+				<h1><a href="{forumrow.U_VIEWFORUM}">{forumrow.FORUM_NAME}</a></h1>
+				<!-- IF forumrow.FORUM_DESC --><p class="forum-desc">{forumrow.FORUM_DESC}</p><!-- ENDIF -->
+				<!-- IF not forumrow.S_IS_LINK -->
+					<!-- IF forumrow.S_SUBFORUMS -->
+						<p class="forum-subforums no-clickthrough">
+							<span>{forumrow.L_SUBFORUM_STR}</span> {forumrow.SUBFORUMS}
+						</p>
+					<!-- ENDIF -->
+					<p class="forum-stats">
+						<span>{forumrow.TOPICS}</span> {L_TOPICS}
+						<span>{forumrow.POSTS}</span> {L_POSTS}
+					</p>
+				<!-- ENDIF -->
+				<!-- IF forumrow.S_IS_LINK and forumrow.CLICKS -->
+					<p class="redirects"><span>{L_REDIRECTS}:</span> {forumrow.CLICKS}</p>
+				<!-- ENDIF -->
+				<!-- IF not forumrow.S_IS_LINK -->
+					<!--
+					<!-- IF forumrow.LAST_POST_TIME -->
+						<p class="last-post">
+							<span>{L_LAST_POST}:</span> <time>{forumrow.LAST_POST_TIME}</time>
+							<span>{L_POST_BY_AUTHOR}</span> {forumrow.LAST_POSTER_FULL}
+						</p>
+					<!-- ELSE -->
+						<p class="no-posts">{L_NO_POSTS}</p>
+					<!-- ENDIF -->
+					-->
+				<!-- ENDIF -->
+			</div></div>
+		</section>
+		</li>
+		<!-- IF $EXTRA_ROW --><!-- DEFINE $EXTRA_ROW = false --><!-- ELSE --><!-- DEFINE $EXTRA_ROW = true --><!-- ENDIF -->
+		<!-- DEFINE $FIRST_ROW = false -->
+	<!-- ENDIF -->
+	
+	<!-- IF forumrow.S_LAST_ROW -->
+		<!-- IF $EXTRA_ROW -->
+			<li class="empty"></li>
+		<!-- ENDIF -->
+		</ul>
+		</div></section>
+	<!-- ENDIF -->
+<!-- END forumrow -->

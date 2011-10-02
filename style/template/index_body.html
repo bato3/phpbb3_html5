@@ -1,0 +1,57 @@
+<!-- DEFINE $CURRENT_PAGE = 'index' -->
+<!-- INCLUDE overall_header.html -->
+
+<!-- IF S_DISPLAY_SEARCH or (U_MARK_FORUMS and not S_IS_BOT) -->
+<nav class="links"><div>
+	<!-- IF S_DISPLAY_SEARCH -->
+		<div class="left">
+			<a href="{U_SEARCH_UNANSWERED}">{L_SEARCH_UNANSWERED}</a>
+			<!-- IF S_LOAD_UNREADS --> <span class="bull">&bull;</span> <a href="{U_SEARCH_UNREAD}">{L_SEARCH_UNREAD}</a> <!-- ENDIF -->
+			<!-- IF S_USER_LOGGED_IN --> <span class="bull">&bull;</span> <a href="{U_SEARCH_NEW}">{L_SEARCH_NEW}</a> <!-- ENDIF -->
+			<span class="bull">&bull;</span> <a href="{U_SEARCH_ACTIVE_TOPICS}">{L_SEARCH_ACTIVE_TOPICS}</a>
+		</div>
+	<!-- ENDIF -->
+	<!-- IF U_MARK_FORUMS and not S_IS_BOT -->
+		<div class="right">
+			<a href="{U_MARK_FORUMS}">{L_MARK_FORUMS_READ}</a>
+		</div>
+		<!-- IF not S_DISPLAY_SEARCH --><div class="clear"></div><!-- ENDIF -->
+	<!-- ENDIF -->
+</div></nav>
+<!-- ENDIF -->
+
+<!-- INCLUDE forumlist_body.html -->
+
+<!-- IF U_MARK_FORUMS and not S_IS_BOT -->
+<nav class="links links-right"><div>
+	<a href="{U_MARK_FORUMS}">{L_MARK_FORUMS_READ}</a>
+</div></nav>
+<!-- ENDIF -->
+
+
+<!-- IF S_DISPLAY_ONLINE_LIST or NEWEST_USER or (S_DISPLAY_BIRTHDAY_LIST and BIRTHDAY_LIST) -->
+<section class="panel extra"><div>
+	<h1>
+		<!-- IF S_DISPLAY_ONLINE_LIST and U_VIEWONLINE -->
+			<a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a>
+		<!-- ELSE -->
+			{L_STATISTICS}
+		<!-- ENDIF -->
+	</h1>
+	<div class="statistics">
+		<!-- IF S_DISPLAY_ONLINE_LIST -->
+			<p>{TOTAL_USERS_ONLINE} <span class="notes">({L_ONLINE_EXPLAIN})</span><br />{RECORD_USERS}<!-- IF LEGEND --><br />{L_LEGEND}: {LEGEND}<!-- ENDIF --></p>
+			<p>{LOGGED_IN_USER_LIST}</p>
+		<!-- ENDIF -->
+		<!-- IF NEWEST_USER -->
+			<p>{TOTAL_POSTS} <span class="bull">&bull;</span> {TOTAL_TOPICS} <span class="bull">&bull;</span> {TOTAL_USERS} <span class="bull">&bull;</span> {NEWEST_USER}</p>
+		<!-- ENDIF -->
+		<!-- IF S_DISPLAY_BIRTHDAY_LIST and BIRTHDAY_LIST -->
+			<h2>{L_BIRTHDAYS}</h2>
+			<p>{L_CONGRATULATIONS}: {BIRTHDAY_LIST}</p>
+		<!-- ENDIF -->
+	</div>
+</div></section>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

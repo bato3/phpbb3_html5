@@ -1,0 +1,49 @@
+<!-- DEFINE $CURRENT_PAGE = 'forum' --><!-- INCLUDE overall_header.html -->
+
+<!-- IF U_MCP or S_WATCH_FORUM_LINK or (S_HAS_SUBFORUM and U_MARK_FORUMS and not S_IS_BOT) -->
+<nav class="links links-right"><div>
+	<!-- IF U_MCP -->
+		<!-- DEFINE $S_FORUM_NAV = true -->
+		<a href="{U_MCP}">{L_MCP}</a>
+	<!-- ENDIF -->
+	<!-- IF S_WATCH_FORUM_LINK -->
+		<!-- IF $S_FORUM_NAV --> <span class="bull">&bull;</span> <!-- ENDIF --><!-- DEFINE $S_FORUM_NAV = true -->
+		<a href="{S_WATCH_FORUM_LINK}">{S_WATCH_FORUM_TITLE}</a>
+	<!-- ENDIF -->
+	<!-- IF S_HAS_SUBFORUM and U_MARK_FORUMS and not S_IS_BOT -->
+		<!-- IF $S_FORUM_NAV --> <span class="bull">&bull;</span> <!-- ENDIF --><!-- DEFINE $S_FORUM_NAV = true -->
+		<a href="{U_MARK_FORUMS}">{L_MARK_SUBFORUMS_READ}</a>
+	<!-- ENDIF -->
+</div></nav>
+<!-- ENDIF -->
+
+<h1><a href="{U_VIEW_FORUM}">{FORUM_NAME}</a></h1>
+<!-- IF FORUM_DESC --><p class="forum-desc">{FORUM_DESC}</p><!-- ENDIF -->
+
+<!-- IF S_FORUM_RULES -->
+<article class="rules<!-- IF U_FORUM_RULES --> clickable<!-- ENDIF -->"><div>
+	<!-- IF U_FORUM_RULES -->
+		<p><a href="{U_FORUM_RULES}">{L_FORUM_RULES}</a></p>
+	<!-- ELSE -->
+		<h1>{L_FORUM_RULES}</h1>
+		{FORUM_RULES}
+	<!-- ENDIF -->
+</div></article>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_SUBFORUM --><!-- INCLUDE forumlist_body.html --><!-- ENDIF -->
+
+<!-- IF S_HAS_SUBFORUM and U_MARK_FORUMS and not S_IS_BOT -->
+<nav class="links links-right"><div>
+	<!-- IF S_WATCH_FORUM_LINK -->
+		<div class="left">
+			<a href="{S_WATCH_FORUM_LINK}">{S_WATCH_FORUM_TITLE}</a>
+		</div>
+	<!-- ENDIF -->
+	<a href="{U_MARK_FORUMS}">{L_MARK_SUBFORUMS_READ}</a>
+</div></nav>
+<!-- ENDIF -->
+
+<!-- IF .topicrow --><!-- INCLUDE topiclist_body.html --><!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->
