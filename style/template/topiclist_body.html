@@ -1,37 +1,60 @@
 <!-- DEFINE $LAST_ANNOUNCE = true -->
 <!-- BEGIN topicrow -->
-	<!-- IF topicrow.S_FIRST_ROW -->
-		<section class="topics"><div>
+	<!-- IF topicrow.S_FIRST_ROW or ($LAST_ANNOUNCE and not topicrow.S_POST_ANNOUNCE and not topicrow.S_POST_GLOBAL) -->
+		<!-- IF not topicrow.S_FIRST_ROW -->
+			</ul>
+			</div></section>
+			<section class="topics"><div>
+			<!-- IF PAGINATION -->
+				<p class="pagination">
+					<span class="page-current">{PAGE_NUMBER}</span>
+					{PAGINATION}
+				</p>
+			<!-- ENDIF -->
+		<!-- ELSE -->
+			<section class="topics first"><div>
+		<!-- ENDIF -->
 		<h1><!-- IF topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL -->{L_ANNOUNCEMENTS}<!-- ELSE -->{L_TOPICS}<!-- ENDIF --></h1>
 		<ul class="topics-list<!-- IF topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL --> announce<!-- ENDIF -->">
-	<!-- ELSEIF $LAST_ANNOUNCE and not topicrow.S_POST_ANNOUNCE and not topicrow.S_POST_GLOBAL -->
-		</ul>
-		</div></section>
-		<section class="topics"><div>
-		<h1>{L_TOPICS}</h1>
-		<ul class="topics-list">
-		<!-- DEFINE $LAST_ANNOUNCE = false -->
+		<!-- DEFINE $EXTRA_ROW = false -->
+		<!-- IF not topicrow.S_FIRST_ROW --><!-- DEFINE $LAST_ANNOUNCE = false --><!-- ENDIF -->
 	<!-- ENDIF -->
-		<li class="topic topic-{topicrow.S_TOPIC_TYPE}<!-- IF topicrow.S_UNREAD_TOPIC --> unread<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ENDIF --><!-- IF topicrow.S_TOPIC_UNAPPROVED --> unapproved unapproved-topic<!-- ENDIF --><!-- IF topicrow.S_POSTS_UNAPPROVED --> unapproved unapproved-post<!-- ENDIF -->">
+		<li class="topic topic-{topicrow.S_TOPIC_TYPE}<!-- IF topicrow.S_UNREAD_TOPIC --> unread<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ENDIF --><!-- IF topicrow.S_TOPIC_UNAPPROVED --> unapproved unapproved-topic<!-- ENDIF --><!-- IF topicrow.S_POSTS_UNAPPROVED --> unapproved unapproved-post<!-- ENDIF --><!-- IF $EXTRA_ROW --> even<!-- ENDIF -->">
 		<section>
 			<figure data-img="{topicrow.TOPIC_ICON_IMG}">
 				<!-- IF topicrow.TOPIC_ICON_IMG -->
 					<img src="{T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}" alt="{topicrow.TOPIC_FOLDER_IMG_ALT}" />
-				<!-- ELSEIF forumrow.S_IS_LINK -->
+				<!-- ELSEIF topicrow.S_TOPIC_MOVED -->
 					<img src="{T_THEME_PATH}/icons/topic_moved.png" alt="{topicrow.TOPIC_FOLDER_IMG_ALT}" />
-				<!-- ELSEIF forumrow.S_UNREAD_FORUM -->
+				<!-- ELSEIF topicrow.S_UNREAD_TOPIC -->
 					<img src="{T_THEME_PATH}/icons/topic_new.png" alt="{forumrow.FORUM_FOLDER_IMG_ALT}" />
 				<!-- ELSE -->
 					<img src="{T_THEME_PATH}/icons/topic.png" alt="{forumrow.FORUM_FOLDER_IMG_ALT}" />
 				<!-- ENDIF -->
 				<figcaption>{forumrow.FORUM_NAME}</figcaption>
 			</figure>
-			<div class="topic-content"><div>
-				<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}" class="newest-post">{L_VIEW_NEWEST_POST}</a><!-- ENDIF -->
+			<div class="topic-content clickable"<!-- IF topicrow.S_UNREAD_TOPIC and not topicrow.PAGINATION --> data-link="{topicrow.U_NEWEST_POST}"<!-- ENDIF -->><div>
+				<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}" class="newest-post" title="{L_VIEW_NEWEST_POST}">{L_VIEW_NEWEST_POST}</a><!-- ENDIF -->
+				<!-- IF topicrow.PAGINATION --><p class="pagination">{topicrow.PAGINATION}</p><!-- ENDIF -->
 				<h1><a href="{topicrow.U_VIEW_TOPIC}">{topicrow.TOPIC_TITLE}</a></h1>
+				<p class="topic-stats<!-- IF topicrow.ATTACH_ICON_IMG --> has-attachments<!-- ENDIF -->">
+					<span class="posts">{topicrow.REPLIES}</span> <dfn>{L_REPLIES}</dfn>
+					<span class="views">{topicrow.VIEWS}</span> <dfn>{L_VIEWS}</dfn>
+				</p>
+				<p class="first-post">
+					<span class="by">{L_POST_BY_AUTHOR}</span> 
+					<span class="author<!-- IF topicrow.TOPIC_AUTHOR_COLOUR --> special" style="color: {topicrow.TOPIC_AUTHOR_COLOUR};<!-- ENDIF -->">{topicrow.TOPIC_AUTHOR}</span>
+					<span class="time">{topicrow.FIRST_POST_TIME}</span>
+				</p>
+			</div></div>
+			<div class="last-post clickable" data-link="{topicrow.U_LAST_POST}" title="{L_LAST_POST}"><div>
+				<span class="by">{L_POST_BY_AUTHOR}</span>
+				<span class="author<!-- IF topicrow.LAST_POST_AUTHOR_COLOUR --> special" style="color: {topicrow.LAST_POST_AUTHOR_COLOUR};<!-- ENDIF -->">{topicrow.LAST_POST_AUTHOR}</span>
+				<span class="time">{topicrow.LAST_POST_TIME}</span>
 			</div></div>
 		</section>
 		</li>
+		<!-- IF $EXTRA_ROW --><!-- DEFINE $EXTRA_ROW = false --><!-- ELSE --><!-- DEFINE $EXTRA_ROW = true --><!-- ENDIF -->
 	<!-- IF topicrow.S_LAST_ROW -->
 		</ul>
 		</div></section>

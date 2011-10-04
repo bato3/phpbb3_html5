@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html dir="{S_CONTENT_DIRECTION}" lang="{S_USER_LANG}">
+<!--[if lt IE 8]><html dir="{S_CONTENT_DIRECTION}" lang="{S_USER_LANG}" class="oldie ie7"><![endif]-->
+<!--[if IE 8]><html dir="{S_CONTENT_DIRECTION}" lang="{S_USER_LANG}" class="oldie"><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html dir="{S_CONTENT_DIRECTION}" lang="{S_USER_LANG}"><!--<![endif]-->
 <head>
 <!-- IF $SHOW_COPYRIGHT -->
 <pre>
@@ -81,8 +83,8 @@ limitations under the License.
 				<section class="popup"><div>
 					<form action="{U_SEARCH}" method="post">
 					<fieldset class="nowrap">
-						<input type="text" name="keywords" maxlength="128" value="" required />
-						<input class="main" type="submit" value="{L_SEARCH}" />
+						<input type="text" name="keywords" maxlength="128" value="" required>
+						<input class="main" type="submit" value="{L_SEARCH}">
 					</fieldset>
 					{S_SEARCH_HIDDEN_FIELDS}
 					</form>
@@ -103,13 +105,13 @@ limitations under the License.
 						<fieldset>
 						<dl>
 							<dt>{L_USERNAME}:</dt>
-							<dd><input type="text" name="username" value="" required /></dd>
+							<dd><input type="text" name="username" value="" required></dd>
 						</dl>
 						<dl>
 							<dt>{L_PASSWORD}:</dt>
-							<dd><input type="password" name="password" value="" required /></dd>
+							<dd><input type="password" name="password" value="" required></dd>
 						</dl>
-						<!-- IF S_AUTOLOGIN_ENABLED --><p class="nowrap"><label><input type="checkbox" name="autologin" /> {L_LOG_ME_IN}</label></p><!-- ENDIF -->
+						<!-- IF S_AUTOLOGIN_ENABLED --><p class="nowrap"><label><input type="checkbox" name="autologin"> {L_LOG_ME_IN}</label></p><!-- ENDIF -->
 						<!-- IF U_SEND_PASSWORD -->
 							<p class="nowrap"><a class="link" href="{U_SEND_PASSWORD}">{L_FORGOT_PASS}</a></p>
 						<!-- ELSE -->
@@ -118,7 +120,7 @@ limitations under the License.
 								<span class="data-forgot">{L_FORGOT_PASS}</span>
 							</p>
 						<!-- ENDIF -->
-						<p class="submit"><input class="main" type="submit" name="login" value="{L_LOGIN}" /><!-- IF S_REGISTER_ENABLED --> <a class="submit" href="{U_REGISTER}">{L_REGISTER}</a><!-- ENDIF --></p>
+						<p class="submit"><input class="main" type="submit" name="login" value="{L_LOGIN}"><!-- IF S_REGISTER_ENABLED --> <a class="submit" href="{U_REGISTER}">{L_REGISTER}</a><!-- ENDIF --></p>
 						</fieldset>
 						</form>
 					<!-- ELSE -->
