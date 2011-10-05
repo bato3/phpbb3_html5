@@ -38,6 +38,7 @@
 				<figcaption>{forumrow.FORUM_NAME}</figcaption>
 			</figure>
 			<div class="forum-content clickable"><div>
+				<!-- IF forumrow.U_UNAPPROVED_TOPICS --><a class="unapproved-icon" href="{forumrow.U_UNAPPROVED_TOPICS}" title="{L_TOPICS_UNAPPROVED}">{L_TOPICS_UNAPPROVED}</a><!-- ENDIF -->
 				<h1><a href="{forumrow.U_VIEWFORUM}">{forumrow.FORUM_NAME}</a></h1>
 				<!-- IF forumrow.FORUM_DESC --><p class="forum-desc">{forumrow.FORUM_DESC}</p><!-- ENDIF -->
 				<!-- IF not forumrow.S_IS_LINK -->

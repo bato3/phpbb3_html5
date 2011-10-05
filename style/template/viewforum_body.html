@@ -1,18 +1,23 @@
 <!-- DEFINE $CURRENT_PAGE = 'forum' --><!-- INCLUDE overall_header.html -->
 
-<!-- IF U_MCP or S_WATCH_FORUM_LINK or (S_HAS_SUBFORUM and U_MARK_FORUMS and not S_IS_BOT) -->
-<nav class="links links-right"><div>
+<!-- IF U_MCP or S_WATCH_FORUM_LINK or U_MARK_TOPICS or (S_HAS_SUBFORUM and U_MARK_FORUMS and not S_IS_BOT) -->
+<nav class="links"><div>
 	<!-- IF U_MCP -->
-		<!-- DEFINE $S_FORUM_NAV = true -->
-		<a href="{U_MCP}">{L_MCP}</a>
+		<div class="right">
+			<a href="{U_MCP}">{L_MCP}</a>
+		</div>
 	<!-- ENDIF -->
 	<!-- IF S_WATCH_FORUM_LINK -->
-		<!-- IF $S_FORUM_NAV --> <span class="bull">&bull;</span> <!-- ENDIF --><!-- DEFINE $S_FORUM_NAV = true -->
+		<!-- DEFINE $S_FORUM_NAV = true -->
 		<a href="{S_WATCH_FORUM_LINK}">{S_WATCH_FORUM_TITLE}</a>
 	<!-- ENDIF -->
 	<!-- IF S_HAS_SUBFORUM and U_MARK_FORUMS and not S_IS_BOT -->
 		<!-- IF $S_FORUM_NAV --> <span class="bull">&bull;</span> <!-- ENDIF --><!-- DEFINE $S_FORUM_NAV = true -->
 		<a href="{U_MARK_FORUMS}">{L_MARK_SUBFORUMS_READ}</a>
+	<!-- ENDIF -->
+	<!-- IF U_MARK_TOPICS -->
+		<!-- IF $S_FORUM_NAV --> <span class="bull">&bull;</span> <!-- ENDIF --><!-- DEFINE $S_FORUM_NAV = true -->
+		<a href="{U_MARK_TOPICS}">{L_MARK_TOPICS_READ}</a>
 	<!-- ENDIF -->
 </div></nav>
 <!-- ENDIF -->
@@ -33,6 +38,7 @@
 
 <!-- IF S_HAS_SUBFORUM --><!-- INCLUDE forumlist_body.html --><!-- ENDIF -->
 
+<!-- IF false -->
 <!-- IF ((S_HAS_SUBFORUM and U_MARK_FORUMS) or U_MARK_TOPICS) and not S_IS_BOT -->
 <nav class="links links-right"><div>
 	<!-- IF S_WATCH_FORUM_LINK -->
@@ -48,6 +54,7 @@
 		<a href="{U_MARK_TOPICS}">{L_MARK_TOPICS_READ}</a>
 	<!-- ENDIF -->
 </div></nav>
+<!-- ENDIF -->
 <!-- ENDIF -->
 
 <div class="topic-actions before">
@@ -71,7 +78,6 @@
 			</form>
 		</section>
 	<!-- ENDIF -->
-	
 	<!-- IF PAGINATION -->
 		<p class="pagination">
 			<span class="page-current">{PAGE_NUMBER}</span>
@@ -82,6 +88,7 @@
 
 <!-- IF .topicrow -->
 	<!-- INCLUDE topiclist_body.html -->
+	<!-- BEGIN topicrow(10,10) -->
 	<div class="topic-actions after">
 		<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
 			<p class="big-buttons">
@@ -99,6 +106,7 @@
 			</p>
 		<!-- ENDIF -->
 	</div>
+	<!-- END topicrow -->
 <!-- ELSEIF S_IS_POSTABLE -->
 <section class="panel"><div>
 	<h1>{L_TOPICS}</h1>

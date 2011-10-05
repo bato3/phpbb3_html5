@@ -14,12 +14,12 @@
 		<!-- ELSE -->
 			<section class="topics first"><div>
 		<!-- ENDIF -->
-		<h1><!-- IF topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL -->{L_ANNOUNCEMENTS}<!-- ELSE -->{L_TOPICS}<!-- ENDIF --></h1>
+		<h1><!-- IF topicrow.S_FIRST_ROW and S_DISPLAY_ACTIVE -->{L_ACTIVE_TOPICS}<!-- ELSEIF topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL -->{L_ANNOUNCEMENTS}<!-- ELSE -->{L_TOPICS}<!-- ENDIF --></h1>
 		<ul class="topics-list<!-- IF topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL --> announce<!-- ENDIF -->">
 		<!-- DEFINE $EXTRA_ROW = false -->
 		<!-- IF not topicrow.S_FIRST_ROW --><!-- DEFINE $LAST_ANNOUNCE = false --><!-- ENDIF -->
 	<!-- ENDIF -->
-		<li class="topic topic-{topicrow.S_TOPIC_TYPE}<!-- IF topicrow.S_UNREAD_TOPIC --> unread<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ENDIF --><!-- IF topicrow.S_TOPIC_UNAPPROVED --> unapproved unapproved-topic<!-- ENDIF --><!-- IF topicrow.S_POSTS_UNAPPROVED --> unapproved unapproved-post<!-- ENDIF --><!-- IF $EXTRA_ROW --> even<!-- ENDIF -->">
+		<li class="topic topic-{topicrow.S_TOPIC_TYPE}<!-- IF topicrow.S_UNREAD_TOPIC --> unread<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ENDIF --><!-- IF topicrow.S_TOPIC_UNAPPROVED --> unapproved unapproved-topic<!-- ENDIF --><!-- IF topicrow.S_POSTS_UNAPPROVED --> unapproved unapproved-post<!-- ENDIF --><!-- IF topicrow.S_HAS_POLL --> poll<!-- ENDIF --><!-- IF $EXTRA_ROW --> even<!-- ENDIF -->">
 		<section>
 			<figure data-img="{topicrow.TOPIC_ICON_IMG}">
 				<!-- IF topicrow.TOPIC_ICON_IMG -->
@@ -33,8 +33,14 @@
 				<!-- ENDIF -->
 				<figcaption>{forumrow.FORUM_NAME}</figcaption>
 			</figure>
-			<div class="topic-content clickable"<!-- IF topicrow.S_UNREAD_TOPIC and not topicrow.PAGINATION --> data-link="{topicrow.U_NEWEST_POST}"<!-- ENDIF -->><div>
+			<div class="topic-content clickable"<!-- IF topicrow.S_UNREAD_TOPIC and not topicrow.PAGINATION --> data-link="{topicrow.U_NEWEST_POST}" data-link-count="2"<!-- ENDIF -->><div>
 				<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}" class="newest-post" title="{L_VIEW_NEWEST_POST}">{L_VIEW_NEWEST_POST}</a><!-- ENDIF -->
+				<!-- IF topicrow.S_TOPIC_UNAPPROVED -->
+					<a class="unapproved-icon" href="{topicrow.U_MCP_QUEUE}" title="{L_TOPIC_UNAPPROVED}">{L_TOPIC_UNAPPROVED}</a>
+				<!-- ELSEIF topicrow.S_POSTS_UNAPPROVED -->
+					<a class="unapproved-icon" href="{topicrow.U_MCP_QUEUE}" title="{L_POSTS_UNAPPROVED}">{L_POSTS_UNAPPROVED}</a>
+				<!-- ENDIF -->
+				<!-- IF topicrow.S_TOPIC_REPORTED --><a class="reported-icon" href="{topicrow.U_MCP_REPORT}" title="{L_TOPIC_REPORTED}">{L_TOPIC_REPORTED}</a><!-- ENDIF -->
 				<!-- IF topicrow.PAGINATION --><p class="pagination">{topicrow.PAGINATION}</p><!-- ENDIF -->
 				<h1><a href="{topicrow.U_VIEW_TOPIC}">{topicrow.TOPIC_TITLE}</a></h1>
 				<p class="topic-stats<!-- IF topicrow.ATTACH_ICON_IMG --> has-attachments<!-- ENDIF -->">
