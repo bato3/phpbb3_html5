@@ -28,6 +28,7 @@
 <!-- IF S_FORUM_RULES -->
 <article class="rules<!-- IF U_FORUM_RULES --> clickable<!-- ENDIF -->"><div>
 	<!-- IF U_FORUM_RULES -->
+		<h1>{L_FORUM_RULES}</h1>
 		<p><a href="{U_FORUM_RULES}">{L_FORUM_RULES}</a></p>
 	<!-- ELSE -->
 		<h1>{L_FORUM_RULES}</h1>
@@ -38,7 +39,7 @@
 
 <!-- IF S_HAS_SUBFORUM --><!-- INCLUDE forumlist_body.html --><!-- ENDIF -->
 
-<!-- IF false -->
+<!-- IF $S_SHOW_LINKS_BELOW_FORUM -->
 <!-- IF ((S_HAS_SUBFORUM and U_MARK_FORUMS) or U_MARK_TOPICS) and not S_IS_BOT -->
 <nav class="links links-right"><div>
 	<!-- IF S_WATCH_FORUM_LINK -->
